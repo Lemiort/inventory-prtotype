@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.2.1 FATAL_ERROR)
-set(PROJECT_NAME "Imgui-Mvp")
+set(PROJECT_NAME "dear-imgui-conan")
 project(${PROJECT_NAME})
 
 include(build/conanbuildinfo.cmake)
@@ -18,7 +18,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/bindings)
 file(GLOB_RECURSE SOURCES_LIST "src/*.cpp")
 
-add_executable(${PROJECT_NAME} 
+add_executable(${PROJECT_NAME}
   ${SOURCES_LIST}
   bindings/imgui_impl_glfw.cpp
   bindings/imgui_impl_opengl3.cpp
@@ -30,7 +30,7 @@ set_target_properties(
   ${PROJECT_NAME} PROPERTIES CXX_STANDARD 20 CXX_STANDARD_REQUIRED YES
                              CXX_EXTENSIONS NO)
 
-target_link_libraries(${PROJECT_NAME} 
+target_link_libraries(${PROJECT_NAME}
   PUBLIC
     CONAN_PKG::imgui
     CONAN_PKG::glew
@@ -38,6 +38,6 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 target_compile_definitions(${PROJECT_NAME}
-  PUBLIC 
+  PUBLIC
     IMGUI_IMPL_OPENGL_LOADER_GLEW
 )
