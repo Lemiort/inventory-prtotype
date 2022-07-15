@@ -63,8 +63,26 @@ auto main() -> int {
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        {
-            if (ImGui::BeginMainMenuBar()) {
+        constexpr bool kUseWorkArea = true;
+        static ImGuiWindowFlags flags =
+            ImGuiWindowFlags_::ImGuiWindowFlags_MenuBar |
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar |
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoDecoration |
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoMove |
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoSavedSettings;
+
+        // We demonstrate using the full viewport area or the work area (without
+        // menu-bars, task-bars etc.) Based on your use case you may want one of
+        // the other.
+        const ImGuiViewport* viewport = ImGui::GetMainViewport();
+        ImGui::SetNextWindowPos(kUseWorkArea ? viewport->WorkPos
+                                             : viewport->Pos);
+        ImGui::SetNextWindowSize(kUseWorkArea ? viewport->WorkSize
+                                              : viewport->Size);
+
+        if (ImGui::Begin("Example: Simple layout", &close_button_pressed,
+                         flags)) {
+            if (ImGui::BeginMenuBar()) {
                 if (ImGui::BeginMenu("File")) {
                     {
                         if (ImGui::MenuItem("New")) {
@@ -82,9 +100,63 @@ auto main() -> int {
                     }
                     ImGui::EndMenu();
                 }
-                ImGui::EndMainMenuBar();
+                ImGui::EndMenuBar();
+            }
+
+            // Left
+            static int selected = 0;
+            {
+                ImGui::BeginChild("left pane", ImVec2(650, 0), true);
+                for (int i = 0; i < 100; i++) {
+                    // FIXME: Good candidate to use
+                    // ImGuiSelectableFlags_SelectOnNav
+                    char label[128];
+                    sprintf(label, "MyObject %d", i);
+                    if (ImGui::Selectable(label, selected == i)) {
+                        selected = i;
+                    }
+                }
+                ImGui::EndChild();
+            }
+            ImGui::SameLine();
+
+            // Right
+            {
+                ImGui::BeginGroup();
+                ImGui::BeginChild(
+                    "item view",
+                    ImVec2(0,
+                           -ImGui::GetFrameHeightWithSpacing()));  // Leave
+                                                                   // room for
+                                                                   // 1 line
+                                                                   // below us
+                ImGui::Text("MyObject: %d", selected);
+                ImGui::Separator();
+                if (ImGui::BeginTabBar("##Tabs", ImGuiTabBarFlags_None)) {
+                    if (ImGui::BeginTabItem("Description")) {
+                        ImGui::TextWrapped(
+                            "Lorem ipsum dolor sit amet, consectetur "
+                            "adipiscing elit, sed do eiusmod tempor "
+                            "incididunt ut labore et dolore magna "
+                            "aliqua. ");
+                        ImGui::EndTabItem();
+                    }
+                    if (ImGui::BeginTabItem("Details")) {
+                        ImGui::Text("ID: 0123456789");
+                        ImGui::EndTabItem();
+                    }
+                    ImGui::EndTabBar();
+                }
+                ImGui::EndChild();
+                if (ImGui::Button("Revert")) {
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Save")) {
+                }
+                ImGui::EndGroup();
             }
         }
+        ImGui::End();
 
         // Rendering
         ImGui::Render();
