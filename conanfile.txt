@@ -2,6 +2,7 @@
 imgui/cci.20220621+1.88.docking
 glfw/3.3.4
 glew/2.2.0
+glm/0.9.9.8
 
 [generators]
 cmake
