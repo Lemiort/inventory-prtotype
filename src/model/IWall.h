@@ -10,6 +10,8 @@ public:
     enum class Type : uint8_t { kBreakable = 0, kUnbreakable };
     IWall() = default;
     virtual ~IWall() = default;
+    [[nodiscard]] virtual IWall::Type getType() const = 0;
+    virtual void setType(IWall::Type type) = 0;
 };
 
 }  // namespace model

@@ -1,6 +1,7 @@
 #ifndef SRC_MODEL_ISCENE
 #define SRC_MODEL_ISCENE
 
+#include <memory>
 #include <set>
 
 #include "model/IRenderable.h"
@@ -12,9 +13,10 @@ public:
     IScene() = default;
     virtual ~IScene() = default;
 
-    const std::set<IRenderable>& getObjects() const = 0;
-    void AddObject(IRenderable object) = 0;
-    void RemoveObject(IRenderable& object) = 0;
+    [[nodiscard]] virtual std::set<std::unique_ptr<IRenderable>> const&
+    getObjects() const = 0;
+    virtual void AddObject(std::unique_ptr<IRenderable> object) = 0;
+    virtual void RemoveObject(IRenderable const& object) = 0;
 };
 
 }  // namespace model

@@ -1,5 +1,5 @@
-#ifndef SRC_MODEL_PLAYER
-#define SRC_MODEL_PLAYER
+#ifndef SRC_MODEL_IPLAYER
+#define SRC_MODEL_IPLAYER
 
 #include "model/IRenderable.h"
 
@@ -13,4 +13,4 @@ public:
 
 }  // namespace model
 
-#endif /* SRC_MODEL_PLAYER */
+#endif /* SRC_MODEL_IPLAYER */

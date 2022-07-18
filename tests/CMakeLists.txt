@@ -2,25 +2,40 @@
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/bindings)
 
-add_executable(UnitTests
+### sort of integration tests ###
+
+add_executable(ImguiTest
     ${PROJECT_SOURCE_DIR}/bindings/imgui_impl_glfw.cpp
     ${PROJECT_SOURCE_DIR}/bindings/imgui_impl_opengl3.cpp
     ${PROJECT_SOURCE_DIR}/bindings/imgui_impl_glfw.h
     ${PROJECT_SOURCE_DIR}/bindings/imgui_impl_opengl3.h
-    test.cpp
+    imgui_test.cpp
 )
-
-set_target_properties(
-    UnitTests PROPERTIES CXX_STANDARD 20 CXX_STANDARD_REQUIRED YES
-                             CXX_EXTENSIONS NO)
-
-target_link_libraries(UnitTests
+target_link_libraries(ImguiTest
   PUBLIC
     CONAN_PKG::imgui
     CONAN_PKG::glew
     CONAN_PKG::glfw
 )
 
-add_test(NAME  Tests 
+# add_test(NAME ImguiTests 
+#         COMMAND  ImguiTest
+#         WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+#### regular tests ####
+
+add_subdirectory(model)
+
+add_executable(UnitTests
+  $<TARGET_OBJECTS:ModelTestLib>
+  gtest.cpp
+)
+
+target_link_libraries(UnitTests
+  PUBLIC
+    CONAN_PKG::glm
+    CONAN_PKG::gtest
+)
+
+add_test(NAME  UnitTests 
         COMMAND  UnitTests
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR})

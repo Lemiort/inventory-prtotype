@@ -4,15 +4,15 @@
 
 #include <GLFW/glfw3.h>  // Will drag system OpenGL headers
 
-#include <format>
 #include <iostream>
+#include <sstream>
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
 static void glfw_error_callback(int error, const char* description) {
-    std::cerr << std::format("Glfw Error {}: {}\n", error, description);
+    std::cerr << "Glfw Error " << error << ": " << description << std::endl;
 }
 
 auto main() -> int {
@@ -34,8 +34,8 @@ auto main() -> int {
 
     // Create window with graphics context
     GLFWwindow* window =
-        glfwCreateWindow(1280, 720, "Level editor demo", NULL, NULL);
-    if (window == NULL) {
+        glfwCreateWindow(1280, 720, "Level editor demo", nullptr, nullptr);
+    if (window == nullptr) {
         return 1;
     }
     glfwMakeContextCurrent(window);
@@ -55,7 +55,7 @@ auto main() -> int {
     ImGui_ImplOpenGL3_Init(glsl_version);
 
     // Our state
-    ImVec4 clear_color{0.45f, 0.55f, 0.60f, 1.00f};
+    ImVec4 clear_color{0.45F, 0.55F, 0.60F, 1.00F};
     bool close_button_pressed = false;
 
     // Main loop
@@ -114,9 +114,9 @@ auto main() -> int {
                 for (int i = 0; i < 100; i++) {
                     // FIXME: Good candidate to use
                     // ImGuiSelectableFlags_SelectOnNav
-                    char label[128];
-                    sprintf(label, "MyObject %d", i);
-                    if (ImGui::Selectable(label, selected == i)) {
+                    std::stringstream ss;
+                    ss << "MyObject " << i;
+                    if (ImGui::Selectable(ss.str().c_str(), selected == i)) {
                         selected = i;
                     }
                 }

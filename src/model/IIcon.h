@@ -9,7 +9,8 @@ class IIcon {
 public:
     IIcon() = default;
     virtual ~IIcon() = default;
-    virtual std::filesystem::path getFilePath() const = 0;
+    [[nodiscard]] virtual std::filesystem::path getFilePath() const = 0;
+    virtual void setFilePath(std::filesystem::path path) = 0;
 };
 
 }  // namespace model
