@@ -1,5 +1,5 @@
-#ifndef SRC_VEW_MODEL_SCENE
-#define SRC_VEW_MODEL_SCENE
+#ifndef SRC_VIEW_MODEL_SCENE
+#define SRC_VIEW_MODEL_SCENE
 
 #include <imgui.h>
 
@@ -15,11 +15,22 @@ public:
     void renderSelectableList() {
         ImGui::BeginChild("left pane", ImVec2(650, 0), true);
 
-        for (size_t i = 0; i < getObjects().size(); i++) {
+        const auto& objects = getObjects();
+        auto it = objects.cbegin();
+        for (size_t i = 0; i < objects.size(); i++, it++) {
             // FIXME: Good candidate to use
             // ImGuiSelectableFlags_SelectOnNav
             std::stringstream ss;
-            ss << "MyObject " << i;
+            model::IRenderable* const object = it->get();
+            if (dynamic_cast<model::Player*>(object) != nullptr) {
+                ss << "Player " << i;
+            } else if (dynamic_cast<model::Ladder*>(object) != nullptr) {
+                ss << "Ladder " << i;
+            } else if (dynamic_cast<model::Wall*>(object) != nullptr) {
+                ss << "Wall " << i;
+            } else {
+                ss << "Unknown " << i;
+            }
             if (ImGui::Selectable(ss.str().c_str(), selected_ == i)) {
                 selected_ = i;
             }
@@ -35,4 +46,4 @@ private:
 
 }  // namespace view_model
 
-#endif /* SRC_VEW_MODEL_SCENE */
+#endif /* SRC_VIEW_MODEL_SCENE */
