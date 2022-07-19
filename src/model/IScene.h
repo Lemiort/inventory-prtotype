@@ -15,8 +15,8 @@ public:
 
     virtual std::set<std::unique_ptr<IRenderable>> const& getObjects()
         const = 0;
-    virtual void AddObject(std::unique_ptr<IRenderable> object) = 0;
-    virtual void RemoveObject(IRenderable const& object) = 0;
+    virtual void addObject(std::unique_ptr<IRenderable> object) = 0;
+    virtual void removeObject(IRenderable const& object) = 0;
 };
 
 }  // namespace model

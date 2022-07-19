@@ -13,8 +13,8 @@ public:
     ~Scene() override = default;
 
     std::set<std::unique_ptr<IRenderable>> const& getObjects() const override;
-    void AddObject(std::unique_ptr<IRenderable> object) override;
-    void RemoveObject(IRenderable const& object) override;
+    void addObject(std::unique_ptr<IRenderable> object) override;
+    void removeObject(IRenderable const& object) override;
 };
 
 }  // namespace model

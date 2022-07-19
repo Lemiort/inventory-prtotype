@@ -6,7 +6,7 @@
 
 namespace model {
 
-class Ladder : public ILadder, public Renderable {
+class Ladder : public ILadder {
 public:
     Ladder() = default;
     ~Ladder() override = default;
@@ -19,6 +19,7 @@ public:
 
 private:
     float climbingSpeed_{0.0F};
+    Renderable renderableImpl_;
 };
 
 }  // namespace model

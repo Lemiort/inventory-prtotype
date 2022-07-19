@@ -6,16 +6,16 @@ float Ladder::getClimbingSpeed() const { return climbingSpeed_; }
 
 void Ladder::setClimbingSpeed(float value) { climbingSpeed_ = value; }
 
-IIcon const& Ladder::getIcon() const { return Renderable::getIcon(); }
+IIcon const& Ladder::getIcon() const { return renderableImpl_.getIcon(); }
 
 void Ladder::setIcon(std::unique_ptr<IIcon> icon) {
-    return Renderable::setIcon(std::move(icon));
+    renderableImpl_.setIcon(std::move(icon));
 }
 
-glm::vec2 Ladder::getPosition() const { return Renderable::getPosition(); }
+glm::vec2 Ladder::getPosition() const { return renderableImpl_.getPosition(); }
 
 void Ladder::setPosition(glm::vec2 position) {
-    return Renderable::setPosition(position);
+    renderableImpl_.setPosition(position);
 }
 
 }  // namespace model

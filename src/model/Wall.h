@@ -6,7 +6,7 @@
 
 namespace model {
 
-class Wall : public IWall, public Renderable {
+class Wall : public IWall {
 public:
     Wall() = default;
     ~Wall() override = default;
@@ -22,6 +22,9 @@ public:
     glm::vec2 getPosition() const override;
 
     void setPosition(glm::vec2 position) override;
+
+private:
+    Renderable renderableImpl_;
 };
 
 }  // namespace model

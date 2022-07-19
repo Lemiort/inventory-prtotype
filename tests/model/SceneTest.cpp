@@ -22,10 +22,10 @@ TEST_F(SceneTest, AddGetRemoveObjects) {
     auto renderable = std::make_unique<MockRenderable>();
 
     // Act
-    scene.AddObject(std::move(renderable));
+    scene.addObject(std::move(renderable));
     auto const& objects = scene.getObjects();
     ASSERT_NE(objects.size(), 0);
     auto const& first_object = **objects.cbegin();
-    scene.RemoveObject(first_object);
+    scene.removeObject(first_object);
     ASSERT_EQ(objects.size(), 0);
 }
