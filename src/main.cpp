@@ -11,10 +11,9 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include "model/Ladder.h"
-#include "model/Player.h"
 #include "model/Wall.h"
+#include "view_model/Player.h"
 #include "view_model/Scene.h"
-
 
 static void glfw_error_callback(int error, const char* description) {
     std::cerr << "Glfw Error " << error << ": " << description << std::endl;
@@ -167,7 +166,11 @@ private:
 
 public:
     Main() {
-        scene_.addObject(std::make_unique<model::Player>());
+        scene_.addObject(std::make_unique<view_model::Player>());
+        scene_.addObject(std::make_unique<view_model::Player>());
+        scene_.addObject(std::make_unique<model::Wall>());
+        scene_.addObject(std::make_unique<model::Ladder>());
+        scene_.addObject(std::make_unique<view_model::Player>());
         scene_.addObject(std::make_unique<model::Wall>());
         scene_.addObject(std::make_unique<model::Ladder>());
     }

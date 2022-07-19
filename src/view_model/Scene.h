@@ -4,6 +4,7 @@
 #include <imgui.h>
 
 #include "model/Scene.h"
+#include "view_model/IEditable.h"
 
 namespace view_model {
 
@@ -18,21 +19,16 @@ public:
         const auto& objects = getObjects();
         auto it = objects.cbegin();
         for (size_t i = 0; i < objects.size(); i++, it++) {
-            // FIXME: Good candidate to use
-            // ImGuiSelectableFlags_SelectOnNav
-            std::stringstream ss;
-            model::IRenderable* const object = it->get();
-            if (dynamic_cast<model::Player*>(object) != nullptr) {
-                ss << "Player " << i;
-            } else if (dynamic_cast<model::Ladder*>(object) != nullptr) {
-                ss << "Ladder " << i;
-            } else if (dynamic_cast<model::Wall*>(object) != nullptr) {
-                ss << "Wall " << i;
+            auto editable_object =
+                dynamic_cast<view_model::IEditable*>(it->get());
+            if (editable_object != nullptr) {
+                if (editable_object->renderSelectableItem(selected_ == i)) {
+                    selected_ = i;
+                }
             } else {
-                ss << "Unknown " << i;
-            }
-            if (ImGui::Selectable(ss.str().c_str(), selected_ == i)) {
-                selected_ = i;
+                if (ImGui::Selectable("Unknown", selected_ == i)) {
+                    selected_ = i;
+                }
             }
         }
         ImGui::EndChild();
