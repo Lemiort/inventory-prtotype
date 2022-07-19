@@ -27,6 +27,7 @@ add_subdirectory(model)
 
 add_executable(UnitTests
   $<TARGET_OBJECTS:ModelTestLib>
+  $<TARGET_OBJECTS:ModelLib>
   gtest.cpp
 )
 

@@ -10,21 +10,15 @@ class Ladder : public ILadder, public Renderable {
 public:
     Ladder() = default;
     ~Ladder() override = default;
-    [[nodiscard]] float getClimbingSpeed() const override { return 0.0F; }
-    void setClimbingSpeed(float value) override {}
+    float getClimbingSpeed() const override;
+    void setClimbingSpeed(float value) override;
+    IIcon const& getIcon() const override;
+    void setIcon(std::unique_ptr<IIcon> icon) override;
+    glm::vec2 getPosition() const override;
+    void setPosition(glm::vec2 position) override;
 
-    [[nodiscard]] IIcon const& getIcon() const override {
-        return Renderable::getIcon();
-    }
-    void setIcon(IIcon const& icon) override {
-        return Renderable::setIcon(icon);
-    }
-    [[nodiscard]] glm::vec2 getPosition() const override {
-        return Renderable::getPosition();
-    }
-    void setPosition(glm::vec2 position) override {
-        return Renderable::setPosition(position);
-    }
+private:
+    float climbingSpeed_{0.0F};
 };
 
 }  // namespace model

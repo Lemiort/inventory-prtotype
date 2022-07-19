@@ -9,10 +9,11 @@ class Icon : public IIcon {
 public:
     Icon() = default;
     ~Icon() override = default;
-    [[nodiscard]] std::filesystem::path getFilePath() const override {
-        return std::filesystem::path{};
-    }
-    void setFilePath(std::filesystem::path path) override {}
+    [[nodiscard]] std::filesystem::path getFilePath() const override;
+    void setFilePath(std::filesystem::path path) override;
+
+private:
+    std::filesystem::path path_;
 };
 
 }  // namespace model

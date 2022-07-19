@@ -19,13 +19,14 @@ protected:
 TEST_F(RenderableTest, IconGetterSetterTest) {
     // Arrange
     Renderable renderable;
-    MockIcon icon;
+    auto icon = std::make_unique<MockIcon>();
+    auto const& icon_ref = *icon;
 
     // Act
-    renderable.setIcon(icon);
+    renderable.setIcon(std::move(icon));
 
     // Assert
-    EXPECT_EQ(renderable.getIcon().getFilePath(), icon.getFilePath());
+    EXPECT_EQ(renderable.getIcon().getFilePath(), icon_ref.getFilePath());
 }
 
 TEST_F(RenderableTest, PositionGetterSetterTest) {

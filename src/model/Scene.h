@@ -12,12 +12,9 @@ public:
     Scene() = default;
     ~Scene() override = default;
 
-    [[nodiscard]] std::set<std::unique_ptr<IRenderable>> const& getObjects()
-        const override {
-        return objects_;
-    }
-    void AddObject(std::unique_ptr<IRenderable> object) override {}
-    void RemoveObject(IRenderable const& object) override {}
+    std::set<std::unique_ptr<IRenderable>> const& getObjects() const override;
+    void AddObject(std::unique_ptr<IRenderable> object) override;
+    void RemoveObject(IRenderable const& object) override;
 };
 
 }  // namespace model

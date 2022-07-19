@@ -13,8 +13,8 @@ public:
     IScene() = default;
     virtual ~IScene() = default;
 
-    [[nodiscard]] virtual std::set<std::unique_ptr<IRenderable>> const&
-    getObjects() const = 0;
+    virtual std::set<std::unique_ptr<IRenderable>> const& getObjects()
+        const = 0;
     virtual void AddObject(std::unique_ptr<IRenderable> object) = 0;
     virtual void RemoveObject(IRenderable const& object) = 0;
 };

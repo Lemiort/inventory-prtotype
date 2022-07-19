@@ -8,7 +8,7 @@ namespace model {
 class ILadder : public IRenderable {
 public:
     ILadder() = default;
-    virtual ~ILadder() = default;
+    ~ILadder() override = default;
     [[nodiscard]] virtual float getClimbingSpeed() const = 0;
     virtual void setClimbingSpeed(float value) = 0;
 };

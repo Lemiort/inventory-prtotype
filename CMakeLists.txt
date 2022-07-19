@@ -11,26 +11,11 @@ option(BUILD_TESTS "Build tests" ON)
 
 enable_testing()
 
+include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(${PROJECT_SOURCE_DIR}/bindings)
+
 if(BUILD_TESTS)
   add_subdirectory(tests)
 endif()
 
-include_directories(${PROJECT_SOURCE_DIR}/include)
-include_directories(${PROJECT_SOURCE_DIR}/bindings)
-file(GLOB_RECURSE SOURCES_LIST "src/*.cpp")
-
-add_executable(${PROJECT_NAME}
-  ${SOURCES_LIST}
-  bindings/imgui_impl_glfw.cpp
-  bindings/imgui_impl_opengl3.cpp
-  bindings/imgui_impl_glfw.h
-  bindings/imgui_impl_opengl3.h
-)
-
-target_link_libraries(${PROJECT_NAME}
-  PUBLIC
-    CONAN_PKG::imgui
-    CONAN_PKG::glew
-    CONAN_PKG::glfw
-    CONAN_PKG::glm
-)
+add_subdirectory(src)

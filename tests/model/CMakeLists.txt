@@ -1,10 +1,10 @@
 add_library(ModelTestLib OBJECT
-    IconTest.cpp
-    LadderTest.cpp
-    PlayerTest.cpp
-    RenderableTest.cpp
-    SceneTest.cpp
-    WallTest.cpp
+  IconTest.cpp
+  LadderTest.cpp
+  PlayerTest.cpp
+  RenderableTest.cpp
+  SceneTest.cpp
+  WallTest.cpp
 )
 
 target_link_libraries(ModelTestLib

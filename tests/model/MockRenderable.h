@@ -9,7 +9,7 @@ namespace model {
 class MockRenderable : public IRenderable {
 public:
     MOCK_METHOD(IIcon const&, getIcon, (), (const, override));
-    MOCK_METHOD(void, setIcon, (IIcon const&), (override));
+    MOCK_METHOD(void, setIcon, (std::unique_ptr<IIcon>), (override));
     MOCK_METHOD(glm::vec2, getPosition, (), (const, override));
     MOCK_METHOD(void, setPosition, (glm::vec2), (override));
 };

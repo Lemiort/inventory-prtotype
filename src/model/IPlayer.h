@@ -8,7 +8,7 @@ namespace model {
 class IPlayer : public IRenderable {
 public:
     IPlayer() = default;
-    virtual ~IPlayer() = default;
+    ~IPlayer() override = default;
 };
 
 }  // namespace model

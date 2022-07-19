@@ -11,18 +11,10 @@ public:
     Player() = default;
     ~Player() override = default;
 
-    [[nodiscard]] IIcon const& getIcon() const override {
-        return Renderable::getIcon();
-    }
-    void setIcon(IIcon const& icon) override {
-        return Renderable::setIcon(icon);
-    }
-    [[nodiscard]] glm::vec2 getPosition() const override {
-        return Renderable::getPosition();
-    }
-    void setPosition(glm::vec2 position) override {
-        return Renderable::setPosition(position);
-    }
+    IIcon const& getIcon() const override;
+    void setIcon(std::unique_ptr<IIcon> icon) override;
+    glm::vec2 getPosition() const override;
+    void setPosition(glm::vec2 position) override;
 };
 
 }  // namespace model

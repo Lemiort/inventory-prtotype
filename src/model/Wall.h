@@ -11,23 +11,17 @@ public:
     Wall() = default;
     ~Wall() override = default;
 
-    [[nodiscard]] IWall::Type getType() const override {
-        return IWall::Type::kUnbreakable;
-    }
-    void setType(IWall::Type type) override {}
+    IWall::Type getType() const override;
 
-    [[nodiscard]] IIcon const& getIcon() const override {
-        return Renderable::getIcon();
-    }
-    void setIcon(IIcon const& icon) override {
-        return Renderable::setIcon(icon);
-    }
-    [[nodiscard]] glm::vec2 getPosition() const override {
-        return Renderable::getPosition();
-    }
-    void setPosition(glm::vec2 position) override {
-        return Renderable::setPosition(position);
-    }
+    void setType(IWall::Type type) override;
+
+    IIcon const& getIcon() const override;
+
+    void setIcon(std::unique_ptr<IIcon> icon) override;
+
+    glm::vec2 getPosition() const override;
+
+    void setPosition(glm::vec2 position) override;
 };
 
 }  // namespace model
