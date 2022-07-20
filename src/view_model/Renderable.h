@@ -15,11 +15,13 @@ public:
     void renderEditWindow() override;
     int getId() const;
     void setName(std::string name);
+    bool getIsMarkedToDelete() const override;
 
 private:
     std::string name_;
     int object_id_;
     static int objects_count_;
+    bool is_marked_to_delete_{false};
 };
 
 }  // namespace view_model

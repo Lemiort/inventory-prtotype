@@ -75,4 +75,8 @@ void Wall::renderEditWindow() {
     ImGui::EndChild();
 }
 
+bool Wall::getIsMarkedToDelete() const {
+    return renderable_impl_.getIsMarkedToDelete();
+}
+
 }  // namespace view_model

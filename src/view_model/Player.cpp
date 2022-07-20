@@ -23,4 +23,8 @@ void Player::renderEditWindow() {
     ImGui::EndChild();
 }
 
+bool Player::getIsMarkedToDelete() const {
+    return renderable_impl_.getIsMarkedToDelete();
+}
+
 }  // namespace view_model

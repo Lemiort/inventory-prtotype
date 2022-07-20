@@ -9,6 +9,7 @@ public:
     virtual ~IEditable() = default;
     virtual bool renderSelectableItem(bool is_selected) = 0;
     virtual void renderEditWindow() = 0;
+    virtual bool getIsMarkedToDelete() const = 0;
 };
 }  // namespace view_model
 

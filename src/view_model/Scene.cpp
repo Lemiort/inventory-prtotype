@@ -31,11 +31,16 @@ void Scene::renderEditWindow(size_t index) {
     const auto& objects = getObjects();
     auto it = objects.cbegin();
     std::advance(it, index);
+    bool is_marked_to_delete{false};
     if (it != objects.cend()) {
-        auto editable_object = dynamic_cast<view_model::IEditable*>(it->get());
+        auto* editable_object = dynamic_cast<view_model::IEditable*>(it->get());
         if (editable_object != nullptr) {
             editable_object->renderEditWindow();
+            is_marked_to_delete = editable_object->getIsMarkedToDelete();
         }
+    }
+    if (is_marked_to_delete) {
+        removeObject(**it);
     }
 }
 

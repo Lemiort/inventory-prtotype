@@ -28,4 +28,8 @@ void Ladder::renderEditWindow() {
     ImGui::EndChild();
 }
 
+bool Ladder::getIsMarkedToDelete() const {
+    return renderable_impl_.getIsMarkedToDelete();
+}
+
 }  // namespace view_model

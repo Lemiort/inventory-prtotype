@@ -18,6 +18,10 @@ bool Renderable::renderSelectableItem(bool is_selected) {
     return ImGui::Selectable(name_.c_str(), is_selected);
 }
 void Renderable::renderEditWindow() {
+    if (ImGui::Button("Delete")) {
+        is_marked_to_delete_ = true;
+    }
+
     auto position = getPosition();
     float* flat_array = &position.x;
     if (ImGui::InputFloat2("Position", flat_array)) {
@@ -40,5 +44,7 @@ void Renderable::renderEditWindow() {
     // ImGui::Image(my_tex_id, ImVec2(my_tex_w, my_tex_h), uv_min, uv_max,
     // tint_col, border_col);
 }
+
+bool Renderable::getIsMarkedToDelete() const { return is_marked_to_delete_; }
 
 }  // namespace view_model
