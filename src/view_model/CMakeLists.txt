@@ -1,9 +1,14 @@
 add_library(ViewModelLib OBJECT
-    Scene.h
+    Ladder.cpp
+    Player.cpp
+    Renderable.cpp
+    Scene.cpp
+    Wall.cpp
 )
 
 target_link_libraries(ViewModelLib
   PUBLIC
+    CONAN_PKG::imgui
     CONAN_PKG::glm
 )
 

@@ -2,9 +2,9 @@
 
 namespace model {
 
-IWall::Type Wall::getType() const { return IWall::Type::kUnbreakable; }
+IWall::Type Wall::getType() const { return type_; }
 
-void Wall::setType(IWall::Type type) {}
+void Wall::setType(IWall::Type type) { type_ = type; }
 
 IIcon const& Wall::getIcon() const { return renderableImpl_.getIcon(); }
 

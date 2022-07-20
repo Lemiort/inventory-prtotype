@@ -10,16 +10,16 @@
 
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-#include "model/Ladder.h"
-#include "model/Wall.h"
+#include "view_model/Ladder.h"
 #include "view_model/Player.h"
 #include "view_model/Scene.h"
+#include "view_model/Wall.h"
 
 static void glfw_error_callback(int error, const char* description) {
     std::cerr << "Glfw Error " << error << ": " << description << std::endl;
 }
 namespace {
-const char* const kGlslVersion = "#version 440";
+const char* const kGlslVersion = "#version 150";
 }  // namespace
 
 class Main final {
@@ -37,8 +37,8 @@ private:
         }
 
         // GL 4.4 + GLSL 440
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);  // only for Mac
 
@@ -114,35 +114,17 @@ private:
             // Right
             {
                 ImGui::BeginGroup();
-                ImGui::BeginChild(
-                    "item view",
-                    ImVec2(0,
-                           -ImGui::GetFrameHeightWithSpacing()));  // Leave
-                                                                   // room for
-                                                                   // 1 line
-                                                                   // below us
-                ImGui::Text("MyObject: %d", static_cast<int>(selected));
-                ImGui::Separator();
-                if (ImGui::BeginTabBar("##Tabs", ImGuiTabBarFlags_None)) {
-                    if (ImGui::BeginTabItem("Description")) {
-                        ImGui::TextWrapped(
-                            "Lorem ipsum dolor sit amet, consectetur "
-                            "adipiscing elit, sed do eiusmod tempor "
-                            "incididunt ut labore et dolore magna "
-                            "aliqua. ");
-                        ImGui::EndTabItem();
-                    }
-                    if (ImGui::BeginTabItem("Details")) {
-                        ImGui::Text("ID: 0123456789");
-                        ImGui::EndTabItem();
-                    }
-                    ImGui::EndTabBar();
-                }
-                ImGui::EndChild();
-                if (ImGui::Button("Revert")) {
+                scene_.renderEditWindow(selected);
+                if (ImGui::Button("Add player")) {
+                    scene_.addObject(std::make_unique<view_model::Player>());
                 }
                 ImGui::SameLine();
-                if (ImGui::Button("Save")) {
+                if (ImGui::Button("Add wall")) {
+                    scene_.addObject(std::make_unique<view_model::Wall>());
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Add ladder")) {
+                    scene_.addObject(std::make_unique<view_model::Wall>());
                 }
                 ImGui::EndGroup();
             }
@@ -167,12 +149,8 @@ private:
 public:
     Main() {
         scene_.addObject(std::make_unique<view_model::Player>());
-        scene_.addObject(std::make_unique<view_model::Player>());
-        scene_.addObject(std::make_unique<model::Wall>());
-        scene_.addObject(std::make_unique<model::Ladder>());
-        scene_.addObject(std::make_unique<view_model::Player>());
-        scene_.addObject(std::make_unique<model::Wall>());
-        scene_.addObject(std::make_unique<model::Ladder>());
+        scene_.addObject(std::make_unique<view_model::Wall>());
+        scene_.addObject(std::make_unique<view_model::Ladder>());
     }
 
     int run() {

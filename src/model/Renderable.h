@@ -8,7 +8,7 @@ namespace model {
 
 class Renderable : public IRenderable {
 public:
-    Renderable() = default;
+    Renderable();
     ~Renderable() override = default;
     IIcon const& getIcon() const override;
     void setIcon(std::unique_ptr<IIcon> icon) override;

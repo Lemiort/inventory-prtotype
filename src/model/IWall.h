@@ -7,7 +7,7 @@ namespace model {
 
 class IWall : public IRenderable {
 public:
-    enum class Type : uint8_t { kBreakable = 0, kUnbreakable };
+    enum class Type : uint8_t { kBreakable = 0U, kUnbreakable = 1U };
     IWall() = default;
     ~IWall() override = default;
     [[nodiscard]] virtual IWall::Type getType() const = 0;

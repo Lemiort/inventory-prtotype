@@ -1,6 +1,10 @@
 #include "model/Renderable.h"
 
+#include "model/Icon.h"
+
 namespace model {
+
+Renderable::Renderable() : icon_{std::make_unique<Icon>()} {}
 
 IIcon const& Renderable::getIcon() const { return *icon_; }
 

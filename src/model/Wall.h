@@ -25,6 +25,7 @@ public:
 
 private:
     Renderable renderableImpl_;
+    IWall::Type type_{IWall::Type::kBreakable};
 };
 
 }  // namespace model

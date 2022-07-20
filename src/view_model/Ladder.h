@@ -1,14 +1,14 @@
-#ifndef SRC_VIEW_MODEL_PLAYER
-#define SRC_VIEW_MODEL_PLAYER
+#ifndef SRC_VIEW_MODEL_LADDER
+#define SRC_VIEW_MODEL_LADDER
 
-#include "model/Player.h"
+#include "model/Ladder.h"
 #include "view_model/Renderable.h"
 
 namespace view_model {
-class Player : public model::Player, public view_model::IEditable {
+class Ladder : public model::Ladder, public view_model::IEditable {
 public:
-    Player();
-    ~Player() override = default;
+    Ladder();
+    ~Ladder() override = default;
 
     bool renderSelectableItem(bool is_selected) override;
     void renderEditWindow() override;
@@ -18,4 +18,4 @@ private:
 };
 }  // namespace view_model
 
-#endif /* SRC_VIEW_MODEL_PLAYER */
+#endif /* SRC_VIEW_MODEL_LADDER */
