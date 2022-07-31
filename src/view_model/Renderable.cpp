@@ -15,9 +15,10 @@ int Renderable::objects_count_{0};
 
 struct Renderable::OpenGlTexture {
 public:
+    ~OpenGlTexture() { glDeleteTextures(1, &texture); }
     GLuint texture{0};
-    int width{0};
-    int height{0};
+    float width{0.0F};
+    float height{0.0F};
 };
 
 Renderable::Renderable() {
@@ -65,8 +66,9 @@ void Renderable::renderEditWindow() {
 
     if (texture_) {
         ImGui::Text("Icon");
-        ImGui::Image((void*)(intptr_t)texture_->texture,
-                     ImVec2(texture_->width, texture_->height));
+        ImGui::Image(
+            reinterpret_cast<void*>(static_cast<intptr_t>(texture_->texture)),
+            ImVec2(texture_->width, texture_->height));
     }
 }
 
