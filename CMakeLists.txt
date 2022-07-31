@@ -19,3 +19,6 @@ if(BUILD_TESTS)
 endif()
 
 add_subdirectory(src)
+
+file(COPY ${CMAKE_SOURCE_DIR}/textures
+     DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

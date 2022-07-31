@@ -7,7 +7,8 @@ namespace model {
 
 class Icon : public IIcon {
 public:
-    explicit Icon(std::filesystem::path path = "./icon.ico");
+    explicit Icon(
+        std::filesystem::path path = "../textures/thiscatdoesnotexist.jpg");
     ~Icon() override = default;
     [[nodiscard]] std::filesystem::path getFilePath() const override;
     void setFilePath(std::filesystem::path path) override;

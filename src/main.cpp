@@ -124,7 +124,7 @@ private:
                 }
                 ImGui::SameLine();
                 if (ImGui::Button("Add ladder")) {
-                    scene_.addObject(std::make_unique<view_model::Wall>());
+                    scene_.addObject(std::make_unique<view_model::Ladder>());
                 }
                 ImGui::EndGroup();
             }

@@ -39,6 +39,7 @@ target_link_libraries(UnitTests
     CONAN_PKG::imgui
     CONAN_PKG::glm
     CONAN_PKG::gtest
+    CONAN_PKG::glew
 )
 
 add_test(NAME  UnitTests

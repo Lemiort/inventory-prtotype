@@ -10,6 +10,8 @@ target_link_libraries(ViewModelLib
   PUBLIC
     CONAN_PKG::imgui
     CONAN_PKG::glm
+    CONAN_PKG::stb
+    CONAN_PKG::glew
 )
 
 target_include_directories(ViewModelLib
