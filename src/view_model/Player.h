@@ -5,7 +5,7 @@
 #include "view_model/Renderable.h"
 
 namespace view_model {
-class Player : public model::Player, public view_model::IEditable {
+class Player : public model::Player, public virtual view_model::IEditable {
 public:
     Player();
     ~Player() override = default;

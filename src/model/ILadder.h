@@ -5,7 +5,7 @@
 
 namespace model {
 
-class ILadder : public IRenderable {
+class ILadder : public virtual IRenderable {
 public:
     ILadder() = default;
     ~ILadder() override = default;

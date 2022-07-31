@@ -1,0 +1,29 @@
+@startuml "Model classes"
+interface IIcon
+interface IRenderable
+IIcon <.. IRenderable
+IRenderable : IIcon getIcon()
+IRenderable : void setIcon(IIcon icon)
+IRenderable : vec2 getPosition()
+IRenderable : void setPosition(vec2 position)
+interface IPlayer
+IRenderable <|-- IPlayer
+interface IWall
+IRenderable <|-- IWall
+interface ILadder
+IRenderable <|-- ILadder
+
+IIcon <|.. Icon
+
+IRenderable <|.. Renderable
+Icon <.. Renderable
+
+IPlayer <|.. Player
+Renderable <|-- Player
+
+ILadder <|.. Ladder
+Renderable <|-- Ladder
+
+IWall <|.. Wall
+Renderable <|-- Wall
+@enduml

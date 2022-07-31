@@ -5,7 +5,7 @@
 #include "view_model/Renderable.h"
 
 namespace view_model {
-class Ladder : public model::Ladder, public view_model::IEditable {
+class Ladder : public model::Ladder, public virtual view_model::IEditable {
 public:
     Ladder();
     ~Ladder() override = default;

@@ -5,7 +5,7 @@
 
 namespace model {
 
-class IPlayer : public IRenderable {
+class IPlayer : public virtual IRenderable {
 public:
     IPlayer() = default;
     ~IPlayer() override = default;

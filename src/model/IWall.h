@@ -5,7 +5,7 @@
 
 namespace model {
 
-class IWall : public IRenderable {
+class IWall : public virtual IRenderable {
 public:
     enum class Type : uint8_t { kBreakable = 0U, kUnbreakable = 1U };
     IWall() = default;

@@ -6,7 +6,8 @@
 
 namespace view_model {
 
-class Renderable : public model::Renderable, public view_model::IEditable {
+class Renderable : public virtual model::Renderable,
+                   public virtual view_model::IEditable {
 public:
     Renderable();
     ~Renderable() override = default;

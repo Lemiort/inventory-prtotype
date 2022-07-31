@@ -5,7 +5,7 @@
 #include "view_model/Renderable.h"
 
 namespace view_model {
-class Wall : public model::Wall, public view_model::IEditable {
+class Wall : public model::Wall, public virtual view_model::IEditable {
 public:
     Wall();
     ~Wall() override = default;
