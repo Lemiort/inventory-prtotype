@@ -6,18 +6,10 @@
 
 namespace model {
 
-class Player : public IPlayer {
+class Player : public IPlayer, public virtual Renderable {
 public:
     Player() = default;
     ~Player() override = default;
-
-    IIcon const& getIcon() const override;
-    void setIcon(std::unique_ptr<IIcon> icon) override;
-    glm::vec2 getPosition() const override;
-    void setPosition(glm::vec2 position) override;
-
-private:
-    Renderable renderableImpl_;
 };
 
 }  // namespace model

@@ -5,13 +5,10 @@
 namespace view_model {
 
 Wall::Wall() {
-    renderable_impl_.setName("Wall " +
-                             std::to_string(renderable_impl_.getId()));
+    view_model::Renderable::setName(
+        "Wall " + std::to_string(view_model::Renderable::getId()));
 }
 
-bool Wall::renderSelectableItem(bool is_selected) {
-    return renderable_impl_.renderSelectableItem(is_selected);
-}
 void Wall::renderEditWindow() {
     ImGui::BeginChild("item view",
                       ImVec2(0,
@@ -19,7 +16,7 @@ void Wall::renderEditWindow() {
                                                                      // room for
                                                                      // 1 line
                                                                      // below us
-    renderable_impl_.renderEditWindow();
+    view_model::Renderable::renderEditWindow();
 
     // render wall type
     const char* items[] = {"Brekable", "Unbreakable"};
@@ -73,10 +70,6 @@ void Wall::renderEditWindow() {
     }
 
     ImGui::EndChild();
-}
-
-bool Wall::getIsMarkedToDelete() const {
-    return renderable_impl_.getIsMarkedToDelete();
 }
 
 }  // namespace view_model

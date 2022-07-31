@@ -6,25 +6,15 @@
 
 namespace model {
 
-class Wall : public IWall {
+class Wall : public IWall, public virtual Renderable {
 public:
     Wall() = default;
     ~Wall() override = default;
 
     IWall::Type getType() const override;
-
     void setType(IWall::Type type) override;
 
-    IIcon const& getIcon() const override;
-
-    void setIcon(std::unique_ptr<IIcon> icon) override;
-
-    glm::vec2 getPosition() const override;
-
-    void setPosition(glm::vec2 position) override;
-
 private:
-    Renderable renderableImpl_;
     IWall::Type type_{IWall::Type::kBreakable};
 };
 

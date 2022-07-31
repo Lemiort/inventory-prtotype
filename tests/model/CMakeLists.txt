@@ -3,7 +3,6 @@ add_library(ModelTestLib OBJECT
   LadderTest.cpp
   PlayerTest.cpp
   RenderableTest.cpp
-  SceneTest.cpp
   WallTest.cpp
 )
 

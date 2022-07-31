@@ -14,9 +14,10 @@ public:
 
     bool renderSelectableItem(bool is_selected) override;
     void renderEditWindow() override;
+    bool getIsMarkedToDelete() const override;
+
     int getId() const;
     void setName(std::string name);
-    bool getIsMarkedToDelete() const override;
 
 private:
     std::string name_;

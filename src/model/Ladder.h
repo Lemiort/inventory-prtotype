@@ -6,20 +6,15 @@
 
 namespace model {
 
-class Ladder : public ILadder {
+class Ladder : public ILadder, public virtual Renderable {
 public:
     Ladder() = default;
     ~Ladder() override = default;
     float getClimbingSpeed() const override;
     void setClimbingSpeed(float value) override;
-    IIcon const& getIcon() const override;
-    void setIcon(std::unique_ptr<IIcon> icon) override;
-    glm::vec2 getPosition() const override;
-    void setPosition(glm::vec2 position) override;
 
 private:
     float climbingSpeed_{0.0F};
-    Renderable renderableImpl_;
 };
 
 }  // namespace model

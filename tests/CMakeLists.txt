@@ -18,25 +18,29 @@ target_link_libraries(ImguiTest
     CONAN_PKG::glfw
 )
 
-# add_test(NAME ImguiTests 
+# add_test(NAME ImguiTests
 #         COMMAND  ImguiTest
 #         WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 #### regular tests ####
 
 add_subdirectory(model)
+add_subdirectory(view_model)
 
 add_executable(UnitTests
   $<TARGET_OBJECTS:ModelTestLib>
   $<TARGET_OBJECTS:ModelLib>
+  $<TARGET_OBJECTS:ViewModelTestLib>
+  $<TARGET_OBJECTS:ViewModelLib>
   gtest.cpp
 )
 
 target_link_libraries(UnitTests
   PUBLIC
+    CONAN_PKG::imgui
     CONAN_PKG::glm
     CONAN_PKG::gtest
 )
 
-add_test(NAME  UnitTests 
+add_test(NAME  UnitTests
         COMMAND  UnitTests
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR})

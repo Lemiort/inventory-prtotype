@@ -3,7 +3,6 @@ add_library(ModelLib OBJECT
     Ladder.cpp
     Player.cpp
     Renderable.cpp
-    Scene.cpp
     Wall.cpp
 )
 

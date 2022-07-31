@@ -5,17 +5,11 @@
 #include "view_model/Renderable.h"
 
 namespace view_model {
-class Ladder : public model::Ladder, public virtual view_model::IEditable {
+class Ladder : public model::Ladder, public virtual view_model::Renderable {
 public:
     Ladder();
     ~Ladder() override = default;
-
-    bool renderSelectableItem(bool is_selected) override;
     void renderEditWindow() override;
-    bool getIsMarkedToDelete() const override;
-
-private:
-    Renderable renderable_impl_;
 };
 }  // namespace view_model
 

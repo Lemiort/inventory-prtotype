@@ -5,17 +5,12 @@
 #include "view_model/Renderable.h"
 
 namespace view_model {
-class Wall : public model::Wall, public virtual view_model::IEditable {
+class Wall : public model::Wall, public virtual view_model::Renderable {
 public:
     Wall();
     ~Wall() override = default;
 
-    bool renderSelectableItem(bool is_selected) override;
     void renderEditWindow() override;
-    bool getIsMarkedToDelete() const override;
-
-private:
-    Renderable renderable_impl_;
 };
 }  // namespace view_model
 
