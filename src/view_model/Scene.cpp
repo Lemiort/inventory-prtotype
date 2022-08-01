@@ -3,6 +3,10 @@
 
 #include <imgui.h>
 
+namespace {
+constexpr size_t kGridWidth = 8;
+}  // namespace
+
 namespace view_model {
 
 std::set<std::unique_ptr<IEditable>> const& Scene::getObjects() const {
@@ -31,6 +35,10 @@ void Scene::renderSelectableList() {
     const auto& objects = getObjects();
     auto it = objects.cbegin();
     for (size_t i = 0; i < objects.size(); i++, it++) {
+        if (i % kGridWidth != 0) {
+            ImGui::SameLine();
+        }
+
         if ((*it)->renderSelectableItem(selected_ == i)) {
             selected_ = i;
         }

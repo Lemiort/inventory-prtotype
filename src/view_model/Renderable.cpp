@@ -32,7 +32,22 @@ int Renderable::getId() const { return object_id_; }
 void Renderable::setName(std::string name) { name_ = name; }
 
 bool Renderable::renderSelectableItem(bool is_selected) {
-    return ImGui::Selectable(name_.c_str(), is_selected);
+    if (first_render_) {
+        createTextureFromPath(getIcon().getFilePath());
+        first_render_ = false;
+    }
+    auto pos = ImGui::GetCursorPos();
+    auto ret =
+        ImGui::Selectable(name_.c_str(), is_selected,
+                          ImGuiSelectableFlags_::ImGuiSelectableFlags_None,
+                          ImVec2(kIconSize, kIconSize));
+    if (texture_) {
+        ImGui::SetCursorPos(ImVec2(pos.x, pos.y));
+        ImGui::Image(
+            reinterpret_cast<void*>(static_cast<intptr_t>(texture_->texture)),
+            ImVec2(kIconSize, kIconSize));
+    }
+    return ret;
 }
 void Renderable::renderEditWindow() {
     if (first_render_) {

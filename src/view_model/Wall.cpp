@@ -7,6 +7,7 @@ namespace view_model {
 Wall::Wall() {
     view_model::Renderable::setName(
         "Wall " + std::to_string(view_model::Renderable::getId()));
+    setIcon(std::make_unique<model::Icon>("../textures/wall.png"));
 }
 
 void Wall::renderEditWindow() {

@@ -7,6 +7,7 @@ namespace view_model {
 Ladder::Ladder() {
     view_model::Renderable::setName(
         "Ladder " + std::to_string(view_model::Renderable::getId()));
+    setIcon(std::make_unique<model::Icon>("../textures/ladder.png"));
 }
 
 void Ladder::renderEditWindow() {

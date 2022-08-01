@@ -7,6 +7,7 @@ namespace view_model {
 Player::Player() {
     view_model::Renderable::setName(
         "Player " + std::to_string(view_model::Renderable::getId()));
+    setIcon(std::make_unique<model::Icon>("../textures/player.png"));
 }
 
 void Player::renderEditWindow() {
