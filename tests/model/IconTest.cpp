@@ -1,10 +1,13 @@
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
 #include "gtest/gtest.h"
 #include "model/Icon.h"
 
 using model::Icon;
 
 class IconTest : public ::testing::Test {
-protected:
+ protected:
     IconTest() = default;
 
     ~IconTest() override = default;

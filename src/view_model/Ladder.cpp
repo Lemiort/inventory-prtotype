@@ -1,6 +1,12 @@
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
+
 #include "view_model/Ladder.h"
 
 #include <imgui.h>
+
+#include <memory>
 
 namespace view_model {
 

@@ -9,8 +9,8 @@
 #include <iostream>
 #include <sstream>
 
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
+#include "bindings/imgui_impl_glfw.h"
+#include "bindings/imgui_impl_opengl3.h"
 #include "view_model/Ladder.h"
 #include "view_model/Player.h"
 #include "view_model/Scene.h"
@@ -24,11 +24,11 @@ const char* const kGlslVersion = "#version 150";
 }  // namespace
 
 class Main final {
-private:
+ private:
     GLFWwindow* window_{nullptr};
     bool close_button_pressed_{false};
     ImVec4 clear_color_{0.45F, 0.55F, 0.60F, 1.00F};
-    view_model::Scene scene_;
+    std::unique_ptr<view_model::Scene> scene_;
 
     bool initGlfw() {
         // Setup window
@@ -89,17 +89,17 @@ private:
                 if (ImGui::BeginMenu("File")) {
                     {
                         if (ImGui::MenuItem("New")) {
+                            scene_ = std::make_unique<view_model::Scene>();
                         }
                         if (ImGui::MenuItem("Open", "Ctrl+O")) {
                             ImGuiFileDialog::Instance()->OpenDialog(
                                 "ChooseFileDlgKey", "Choose File",
                                 ".cpp,.h,.hpp,.*", ".", 1, nullptr,
-                                ImGuiFileDialogFlags_::
-                                        ImGuiFileDialogFlags_ReadOnlyFileNameField |
-                                    ImGuiFileDialogFlags_::
-                                        ImGuiFileDialogFlags_Modal);
+                                ImGuiFileDialogFlags_ReadOnlyFileNameField |
+                                    ImGuiFileDialogFlags_Modal);
                         }
                         if (ImGui::MenuItem("Save", "Ctrl+S")) {
+                            // add saving
                         }
                         if (ImGui::MenuItem("Save As..")) {
                             ImGuiFileDialog::Instance()->OpenDialog(
@@ -124,7 +124,7 @@ private:
             if (ImGuiFileDialog::Instance()->Display("ChooseFileDlgKey")) {
                 // action if OK
                 if (ImGuiFileDialog::Instance()->IsOk()) {
-                    auto selectedFile =
+                    auto selected_file =
                         ImGuiFileDialog::Instance()->GetSelection();
                     // action
                 }
@@ -137,7 +137,7 @@ private:
             if (ImGuiFileDialog::Instance()->Display("SaveFileDlgKey")) {
                 // action if OK
                 if (ImGuiFileDialog::Instance()->IsOk()) {
-                    std::string filePathName =
+                    std::string file_path_name =
                         ImGuiFileDialog::Instance()->GetFilePathName();
                     // action
                 }
@@ -148,24 +148,24 @@ private:
 
             // Left
             static size_t selected = 0;
-            scene_.renderSelectableList();
-            selected = scene_.getSelectedIndex();
+            scene_->renderSelectableList();
+            selected = scene_->getSelectedIndex();
             ImGui::SameLine();
 
             // Right
             {
                 ImGui::BeginGroup();
-                scene_.renderEditWindow(selected);
+                scene_->renderEditWindow(selected);
                 if (ImGui::Button("Add player")) {
-                    scene_.addObject(std::make_unique<view_model::Player>());
+                    scene_->addObject(std::make_unique<view_model::Player>());
                 }
                 ImGui::SameLine();
                 if (ImGui::Button("Add wall")) {
-                    scene_.addObject(std::make_unique<view_model::Wall>());
+                    scene_->addObject(std::make_unique<view_model::Wall>());
                 }
                 ImGui::SameLine();
                 if (ImGui::Button("Add ladder")) {
-                    scene_.addObject(std::make_unique<view_model::Ladder>());
+                    scene_->addObject(std::make_unique<view_model::Ladder>());
                 }
                 ImGui::EndGroup();
             }
@@ -188,11 +188,12 @@ private:
         glfwSwapBuffers(window_);
     }
 
-public:
+ public:
     Main() {
-        scene_.addObject(std::make_unique<view_model::Player>());
-        scene_.addObject(std::make_unique<view_model::Wall>());
-        scene_.addObject(std::make_unique<view_model::Ladder>());
+        scene_ = std::make_unique<view_model::Scene>();
+        scene_->addObject(std::make_unique<view_model::Player>());
+        scene_->addObject(std::make_unique<view_model::Wall>());
+        scene_->addObject(std::make_unique<view_model::Ladder>());
     }
 
     int run() {

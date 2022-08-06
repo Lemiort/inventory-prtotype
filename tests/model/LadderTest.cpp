@@ -1,10 +1,13 @@
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
 #include "gtest/gtest.h"
 #include "model/Ladder.h"
 
 using model::Ladder;
 
 class LadderTest : public ::testing::Test {
-protected:
+ protected:
     LadderTest() = default;
 
     ~LadderTest() override = default;

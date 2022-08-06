@@ -1,6 +1,11 @@
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
 #include "view_model/Player.h"
 
 #include <imgui.h>
+
+#include <memory>
 
 namespace view_model {
 

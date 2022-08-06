@@ -1,3 +1,6 @@
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
 #include "model/Wall.h"
 
 namespace model {

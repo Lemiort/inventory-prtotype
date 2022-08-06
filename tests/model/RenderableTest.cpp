@@ -1,3 +1,7 @@
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
+
 #include "gtest/gtest.h"
 #include "model/MockIcon.h"
 #include "model/Renderable.h"
@@ -6,7 +10,7 @@ using model::MockIcon;
 using model::Renderable;
 
 class RenderableTest : public ::testing::Test {
-protected:
+ protected:
     RenderableTest() = default;
 
     ~RenderableTest() override = default;

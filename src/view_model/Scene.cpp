@@ -1,7 +1,12 @@
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
 
 #include "view_model/Scene.h"
 
 #include <imgui.h>
+
+#include <utility>
 
 namespace {
 constexpr size_t kGridWidth = 8;

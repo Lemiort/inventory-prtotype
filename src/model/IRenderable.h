@@ -1,15 +1,18 @@
-#ifndef SRC_MODEL_IRENDERABLE
-#define SRC_MODEL_IRENDERABLE
+#ifndef SRC_MODEL_IRENDERABLE_H_
+#define SRC_MODEL_IRENDERABLE_H_
 
-#include <glm/vec2.hpp>
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
 #include <memory>
 
+#include "glm/vec2.hpp"
 #include "model/IIcon.h"
 
 namespace model {
 
 class IRenderable {
-public:
+ public:
     IRenderable() = default;
     virtual ~IRenderable() = default;
     virtual IIcon const& getIcon() const = 0;
@@ -20,4 +23,4 @@ public:
 
 }  // namespace model
 
-#endif /* SRC_MODEL_IRENDERABLE */
+#endif  // SRC_MODEL_IRENDERABLE_H_

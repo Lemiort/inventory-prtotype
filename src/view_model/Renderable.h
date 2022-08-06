@@ -1,5 +1,12 @@
-#ifndef SRC_VIEW_MODEL_RENDERABLE
-#define SRC_VIEW_MODEL_RENDERABLE
+#ifndef SRC_VIEW_MODEL_RENDERABLE_H_
+#define SRC_VIEW_MODEL_RENDERABLE_H_
+
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
+
+#include <memory>
+#include <string>
 
 #include "model/Renderable.h"
 #include "view_model/IEditable.h"
@@ -8,7 +15,7 @@ namespace view_model {
 
 class Renderable : public virtual model::Renderable,
                    public virtual view_model::IEditable {
-public:
+ public:
     Renderable();
     ~Renderable() override;
 
@@ -19,7 +26,7 @@ public:
     int getId() const;
     void setName(std::string name);
 
-private:
+ private:
     std::string name_;
     int object_id_;
     static int objects_count_;
@@ -33,4 +40,4 @@ private:
 
 }  // namespace view_model
 
-#endif /* SRC_VIEW_MODEL_RENDERABLE */
+#endif  // SRC_VIEW_MODEL_RENDERABLE_H_

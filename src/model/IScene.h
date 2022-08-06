@@ -1,5 +1,9 @@
-#ifndef SRC_MODEL_ISCENE
-#define SRC_MODEL_ISCENE
+#ifndef SRC_MODEL_ISCENE_H_
+#define SRC_MODEL_ISCENE_H_
+
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
 
 #include <memory>
 #include <set>
@@ -9,7 +13,7 @@
 namespace model {
 
 class IScene {
-public:
+ public:
     IScene() = default;
     virtual ~IScene() = default;
 
@@ -21,4 +25,4 @@ public:
 
 }  // namespace model
 
-#endif /* SRC_MODEL_ISCENE */
+#endif  // SRC_MODEL_ISCENE_H_

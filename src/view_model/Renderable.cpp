@@ -1,7 +1,13 @@
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
+
 #include "view_model/Renderable.h"
 
 #include <ImGuiFileDialog/ImGuiFileDialog.h>
 #include <imgui.h>
+
+#include <algorithm>
 
 #include "view_model/TextureLoader.h"
 
@@ -15,7 +21,7 @@ namespace view_model {
 int Renderable::objects_count_{0};
 
 struct Renderable::OpenGlTexture {
-public:
+ public:
     ~OpenGlTexture() { glDeleteTextures(1, &texture); }
     GLuint texture{0};
     float width{0.0F};

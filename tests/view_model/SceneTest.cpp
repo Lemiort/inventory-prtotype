@@ -1,12 +1,15 @@
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
+
 #include "gtest/gtest.h"
 #include "view_model/MockEditable.h"
 #include "view_model/Scene.h"
 
-using view_model::MockEditable;
 using view_model::Scene;
 
 class SceneTest : public ::testing::Test {
-protected:
+ protected:
     SceneTest() = default;
 
     ~SceneTest() override = default;

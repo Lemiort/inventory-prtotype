@@ -1,5 +1,9 @@
-#ifndef SRC_VIEW_MODEL_TEXTURELOADER
-#define SRC_VIEW_MODEL_TEXTURELOADER
+#ifndef SRC_VIEW_MODEL_TEXTURELOADER_H_
+#define SRC_VIEW_MODEL_TEXTURELOADER_H_
+
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
 
 #include <GL/glew.h>
 
@@ -9,7 +13,7 @@
 namespace view_model {
 
 class TextureLoader {
-public:
+ public:
     ~TextureLoader();
 
     // Simple helper function to load an image into a OpenGL texture with common
@@ -54,10 +58,10 @@ public:
         return true;
     }
 
-protected:
+ protected:
     TextureLoader() = default;
 };
 
 }  // namespace view_model
 
-#endif /* SRC_VIEW_MODEL_TEXTURELOADER */
+#endif  // SRC_VIEW_MODEL_TEXTURELOADER_H_

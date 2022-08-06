@@ -1,12 +1,16 @@
-#ifndef SRC_MODEL_ILADDER
-#define SRC_MODEL_ILADDER
+#ifndef SRC_MODEL_ILADDER_H_
+#define SRC_MODEL_ILADDER_H_
+
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
 
 #include "model/IRenderable.h"
 
 namespace model {
 
 class ILadder : public virtual IRenderable {
-public:
+ public:
     ILadder() = default;
     ~ILadder() override = default;
     [[nodiscard]] virtual float getClimbingSpeed() const = 0;
@@ -15,4 +19,4 @@ public:
 
 }  // namespace model
 
-#endif /* SRC_MODEL_ILADDER */
+#endif  // SRC_MODEL_ILADDER_H_

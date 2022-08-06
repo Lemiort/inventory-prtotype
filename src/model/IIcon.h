@@ -1,12 +1,16 @@
-#ifndef SRC_MODEL_IICON
-#define SRC_MODEL_IICON
+#ifndef SRC_MODEL_IICON_H_
+#define SRC_MODEL_IICON_H_
+
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
 
 #include <filesystem>
 
 namespace model {
 
 class IIcon {
-public:
+ public:
     IIcon() = default;
     virtual ~IIcon() = default;
     [[nodiscard]] virtual std::filesystem::path getFilePath() const = 0;
@@ -15,4 +19,4 @@ public:
 
 }  // namespace model
 
-#endif /* SRC_MODEL_IICON */
+#endif  // SRC_MODEL_IICON_H_

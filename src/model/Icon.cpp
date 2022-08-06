@@ -1,4 +1,10 @@
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
+
 #include "model/Icon.h"
+
+#include <utility>
 
 namespace model {
 

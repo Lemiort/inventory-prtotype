@@ -1,3 +1,7 @@
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
+
 #include <memory>
 
 #include "gtest/gtest.h"
@@ -7,7 +11,7 @@ using model::IPlayer;
 using model::Player;
 
 class PlayerTest : public ::testing::Test {
-protected:
+ protected:
     PlayerTest() = default;
 
     ~PlayerTest() override = default;

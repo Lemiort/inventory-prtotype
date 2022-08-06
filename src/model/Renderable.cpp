@@ -1,4 +1,9 @@
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
 #include "model/Renderable.h"
+
+#include <utility>
 
 #include "model/Icon.h"
 

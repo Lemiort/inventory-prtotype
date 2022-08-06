@@ -1,10 +1,14 @@
+/*!
+ * @copyright Copyright (c) 2022 Lemiort
+ */
+
 #include "gtest/gtest.h"
 #include "model/Wall.h"
 
 using model::Wall;
 
 class WallTest : public ::testing::Test {
-protected:
+ protected:
     WallTest() = default;
 
     ~WallTest() override = default;
