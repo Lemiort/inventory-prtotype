@@ -9,12 +9,12 @@ constexpr size_t kGridWidth = 8;
 
 namespace view_model {
 
-std::set<std::unique_ptr<IEditable>> const& Scene::getObjects() const {
+std::list<std::unique_ptr<IEditable>> const& Scene::getObjects() const {
     return objects_;
 }
 
 void Scene::addObject(std::unique_ptr<IEditable> object) {
-    objects_.insert(std::move(object));
+    objects_.push_back(std::move(object));
 }
 
 void Scene::removeObject(IEditable const& object) {
@@ -25,7 +25,7 @@ void Scene::removeObject(IEditable const& object) {
                                             return (&(*iterator) == &(object));
                                         });
     if (object_iterator != objects_.end()) {
-        objects_.erase(*object_iterator);
+        objects_.erase(object_iterator);
     }
 }
 

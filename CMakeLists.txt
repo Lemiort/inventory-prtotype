@@ -18,6 +18,7 @@ if(BUILD_TESTS)
   add_subdirectory(tests)
 endif()
 
+add_subdirectory(3rdparty)
 add_subdirectory(src)
 
 file(COPY ${CMAKE_SOURCE_DIR}/textures

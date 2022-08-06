@@ -1,0 +1,3 @@
+[submodule "3rdparty/ImGuiFileDialog"]
+	path = 3rdparty/ImGuiFileDialog
+	url = git@github.com:aiekick/ImGuiFileDialog.git

@@ -40,6 +40,7 @@ target_link_libraries(UnitTests
     CONAN_PKG::glm
     CONAN_PKG::gtest
     CONAN_PKG::glew
+    $<TARGET_OBJECTS:ImGuiFileDialog>
 )
 
 add_test(NAME  UnitTests

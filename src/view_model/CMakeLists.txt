@@ -12,9 +12,11 @@ target_link_libraries(ViewModelLib
     CONAN_PKG::glm
     CONAN_PKG::stb
     CONAN_PKG::glew
+    $<TARGET_OBJECTS:ImGuiFileDialog>
 )
 
 target_include_directories(ViewModelLib
   PUBLIC
     ${PROJECT_SOURCE_DIR}/src
+    ${PROJECT_SOURCE_DIR}/3rdparty
 )

@@ -3,6 +3,7 @@
  */
 
 #include <GLFW/glfw3.h>  // Will drag system OpenGL headers
+#include <ImGuiFileDialog/ImGuiFileDialog.h>
 #include <imgui.h>
 
 #include <iostream>
@@ -90,10 +91,24 @@ private:
                         if (ImGui::MenuItem("New")) {
                         }
                         if (ImGui::MenuItem("Open", "Ctrl+O")) {
+                            ImGuiFileDialog::Instance()->OpenDialog(
+                                "ChooseFileDlgKey", "Choose File",
+                                ".cpp,.h,.hpp,.*", ".", 1, nullptr,
+                                ImGuiFileDialogFlags_::
+                                        ImGuiFileDialogFlags_ReadOnlyFileNameField |
+                                    ImGuiFileDialogFlags_::
+                                        ImGuiFileDialogFlags_Modal);
                         }
                         if (ImGui::MenuItem("Save", "Ctrl+S")) {
                         }
                         if (ImGui::MenuItem("Save As..")) {
+                            ImGuiFileDialog::Instance()->OpenDialog(
+                                "SaveFileDlgKey", "Choose File Name",
+                                ".cpp,.h,.hpp,.*", ".", 1, nullptr,
+                                ImGuiFileDialogFlags_::
+                                        ImGuiFileDialogFlags_ConfirmOverwrite |
+                                    ImGuiFileDialogFlags_::
+                                        ImGuiFileDialogFlags_Modal);
                         }
 
                         if (ImGui::MenuItem("Quit", "Alt+F4")) {
@@ -103,6 +118,32 @@ private:
                     ImGui::EndMenu();
                 }
                 ImGui::EndMenuBar();
+            }
+
+            // display open file dialog
+            if (ImGuiFileDialog::Instance()->Display("ChooseFileDlgKey")) {
+                // action if OK
+                if (ImGuiFileDialog::Instance()->IsOk()) {
+                    auto selectedFile =
+                        ImGuiFileDialog::Instance()->GetSelection();
+                    // action
+                }
+
+                // close
+                ImGuiFileDialog::Instance()->Close();
+            }
+
+            // display save file dialog
+            if (ImGuiFileDialog::Instance()->Display("SaveFileDlgKey")) {
+                // action if OK
+                if (ImGuiFileDialog::Instance()->IsOk()) {
+                    std::string filePathName =
+                        ImGuiFileDialog::Instance()->GetFilePathName();
+                    // action
+                }
+
+                // close
+                ImGuiFileDialog::Instance()->Close();
             }
 
             // Left
@@ -129,6 +170,7 @@ private:
                 ImGui::EndGroup();
             }
         }
+
         ImGui::End();
 
         // Rendering

@@ -1,5 +1,6 @@
 #include "view_model/Renderable.h"
 
+#include <ImGuiFileDialog/ImGuiFileDialog.h>
 #include <imgui.h>
 
 #include "view_model/TextureLoader.h"
@@ -55,6 +56,8 @@ void Renderable::renderEditWindow() {
         first_render_ = false;
     }
 
+    ImGui::Text(name_.c_str());
+
     if (ImGui::Button("Delete")) {
         is_marked_to_delete_ = true;
     }
@@ -70,17 +73,40 @@ void Renderable::renderEditWindow() {
     char path_buffer[kMaxPathLength] = "";
     path_string.copy(path_buffer,
                      std::min(path_string.length(), sizeof(path_buffer)));
-    if (ImGui::InputTextWithHint("Icon path", "Valid path of icon", path_buffer,
-                                 sizeof(path_buffer))) {
-        std::filesystem::path path = std::string(path_buffer);
-        createTextureFromPath(path);
-        if (texture_) {
-            setIcon(std::make_unique<model::Icon>(path));
-        }
+    if (ImGui::InputTextWithHint(
+            "Icon path", "Valid path of icon", path_buffer, sizeof(path_buffer),
+            ImGuiInputTextFlags_::ImGuiInputTextFlags_ReadOnly)) {
+        // set icson moved to file dialog
     }
 
+    // display open file dialog
+    if (ImGuiFileDialog::Instance()->Display("ChooseIconFileDlgKey")) {
+        // action if OK
+        if (ImGuiFileDialog::Instance()->IsOk()) {
+            auto selectedFile = ImGuiFileDialog::Instance()->GetSelection();
+            // action
+            if (selectedFile.size() == 1) {
+                const auto& filepath = selectedFile.cbegin()->second;
+                std::filesystem::path path = std::string(filepath);
+                createTextureFromPath(path);
+                if (texture_) {
+                    setIcon(std::make_unique<model::Icon>(path));
+                }
+            }
+        }
+
+        // close
+        ImGuiFileDialog::Instance()->Close();
+    }
+
+    if (ImGui::Button("Edit icon")) {
+        ImGuiFileDialog::Instance()->OpenDialog(
+            "ChooseIconFileDlgKey", "Choose File", ".png,.jpg,.*", ".", 1,
+            nullptr,
+            ImGuiFileDialogFlags_::ImGuiFileDialogFlags_ReadOnlyFileNameField |
+                ImGuiFileDialogFlags_::ImGuiFileDialogFlags_Modal);
+    }
     if (texture_) {
-        ImGui::Text("Icon");
         ImGui::Image(
             reinterpret_cast<void*>(static_cast<intptr_t>(texture_->texture)),
             ImVec2(texture_->width, texture_->height));
